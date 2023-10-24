@@ -1,18 +1,18 @@
+# Versión del formato
 version: "3"
+
+# Servicios
 services:
+  # Servicio web
   web:
+    # Imagen a usar
     build: .
+    # Puertos a publicar
     ports:
       - "5000:5000"
+    # Variables de entorno
     environment:
-      - SQLALCHEMY_DATABASE_URI=postgresql://username:password@db/database_name
-    depends_on:
-      - db
-  db:
-    image: postgres:latest
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=username
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=database_name
+      - FLASK_APP=app.py
+    # Volúmenes a montar
+    volumes:
+      - .:/app
